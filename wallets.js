@@ -65846,23 +65846,28 @@
     "0x431e312fb799651df42ae706d95dfdfbb96e84fe",
     "0xabc98afc0b9200531695e8e7b6f8040b032dc360",
     "0x8f4ffd8c6324e1beacbddfae676ad4d84b270748",
+    // Include your full list here
   ]);
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const walletInput = document.getElementById('wallet-input');
-    const checkButton = document.getElementById('check-button');
-    const successMessage = document.getElementById('success-message');
-    const errorMessage = document.getElementById('error-message');
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("wf-form-Wallet-Checker");
+    const input = document.getElementById("wallet-input");
+    const successMessage = document.querySelector(".success-message.w-form-done");
+    const errorMessage = document.querySelector(".error-message.w-form-fail");
 
-    checkButton.addEventListener('click', function () {
-      const wallet = walletInput.value.toLowerCase().trim();
-      successMessage.style.display = 'none';
-      errorMessage.style.display = 'none';
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      const wallet = input.value.trim().toLowerCase();
+
+      successMessage.style.display = "none";
+      errorMessage.style.display = "none";
 
       if (allowedWallets.has(wallet)) {
-        successMessage.style.display = 'block';
+        successMessage.style.display = "block";
       } else {
-        errorMessage.style.display = 'block';
+        errorMessage.style.display = "block";
       }
     });
   });
